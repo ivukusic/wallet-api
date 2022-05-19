@@ -1,0 +1,99 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""Account Entity"""
+type Account {
+  """Account balance"""
+  balance: Int!
+  createdAt: DateTime!
+
+  """EUR/USD/YEN"""
+  currency: Currency
+
+  """Account balance"""
+  default: Boolean!
+  id: ID!
+  updatedAt: DateTime!
+  user: User
+}
+
+input AccountCreateInput {
+  currency: Currency!
+}
+
+type Auth {
+  """JWT access token"""
+  accessToken: String!
+
+  """JWT refresh token"""
+  refreshToken: String!
+  user: User!
+}
+
+input AuthRefreshTokenInput {
+  refreshToken: String!
+}
+
+input AuthSignupInput {
+  email: String!
+  firstName: String!
+  gender: Gender
+  lastName: String!
+  phone: String
+}
+
+"""Currency"""
+enum Currency {
+  EUR
+  USD
+  YEN
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""The Gender of the User"""
+enum Gender {
+  FEMALE
+  MALE
+  OTHER
+}
+
+type Mutation {
+  accountCreate(data: AccountCreateInput!): Account!
+  authRefreshToken(data: AuthRefreshTokenInput!): Auth!
+  authSignup(data: AuthSignupInput!): Auth!
+}
+
+type Query {
+  me: User!
+}
+
+"""User Entity"""
+type User {
+  accounts: [Account!]
+  createdAt: DateTime!
+
+  """EUR/USD/YEN"""
+  currency: Currency
+
+  """Email address"""
+  email: String!
+
+  """First name"""
+  firstName: String!
+
+  """Male/Female/Other"""
+  gender: Gender
+  id: ID!
+
+  """Last name"""
+  lastName: String!
+
+  """Phone Number"""
+  phone: String
+  updatedAt: DateTime!
+}
