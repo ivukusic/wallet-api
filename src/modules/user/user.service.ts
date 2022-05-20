@@ -13,7 +13,8 @@ export class UserService {
   }
 
   async userList(): Promise<User[]> {
-    const users = await this.em.find(User, {}, { populate: ['accounts'] });
-    return users;
+    const users = await this.em.find(User, null, { populate: ['accounts'] });
+
+    return users.filter((item) => !!item.accounts.length);
   }
 }

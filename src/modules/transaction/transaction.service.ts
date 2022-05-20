@@ -73,7 +73,7 @@ export class TransactionService {
 
       return transaction;
     } catch (e) {
-      console.log(e);
+      throw new Error(e);
     }
   }
 }
