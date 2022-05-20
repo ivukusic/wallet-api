@@ -10,4 +10,9 @@ export class UserService {
   async findOneById({ id }: UserSingleInput): Promise<User> {
     return this.em.findOne(User, { id });
   }
+
+  async userList(): Promise<User[]> {
+    const users = await this.em.find(User, {}, { populate: ['accounts'] });
+    return users;
+  }
 }

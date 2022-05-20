@@ -16,7 +16,7 @@ import { User } from '../user/user.entity';
 @Entity()
 @ObjectType({ description: 'Account Entity' })
 @InputType({ isAbstract: true })
-export class Account extends BaseEntity {
+export class Transaction extends BaseEntity {
   @Enum({ items: () => CurrencyType, nullable: false, type: Enum })
   @Field((_type) => CurrencyType, {
     description: 'EUR/USD/YEN',
@@ -26,13 +26,21 @@ export class Account extends BaseEntity {
 
   @Property({ type: FloatType })
   @Field(() => Float, { description: 'Amount', nullable: false })
-  public balance: number;
+  public amount: number;
 
-  @Property({ nullable: false })
-  @Field({ description: 'Account balance', nullable: false })
-  default: boolean;
+  @Property({ type: FloatType })
+  @Field(() => Float, { description: 'Exchange rate', nullable: false })
+  public exchangeRate: number;
+
+  @Property({ nullable: true })
+  @Field({ description: 'Description', nullable: true })
+  description?: string;
 
   @ManyToOne({ entity: () => User, nullable: false })
   @Field((_type) => User, { nullable: true })
-  public user: IdentifiedReference<User>;
+  public sender: IdentifiedReference<User>;
+
+  @ManyToOne({ entity: () => User, nullable: false })
+  @Field((_type) => User, { nullable: true })
+  public receiver: IdentifiedReference<User>;
 }

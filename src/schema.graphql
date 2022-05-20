@@ -4,8 +4,8 @@
 
 """Account Entity"""
 type Account {
-  """Account balance"""
-  balance: Int!
+  """Amount"""
+  balance: Float!
   createdAt: DateTime!
 
   """EUR/USD/YEN"""
@@ -66,10 +66,66 @@ type Mutation {
   accountCreate(data: AccountCreateInput!): Account!
   authRefreshToken(data: AuthRefreshTokenInput!): Auth!
   authSignup(data: AuthSignupInput!): Auth!
+  transactionCreate(data: TransactionCreateInput!): Transaction!
+}
+
+input PaginationArgs {
+  limit: Int
+  offset: Int
 }
 
 type Query {
   me: User!
+  transactionList(pagination: PaginationArgs, where: TransactionWhere): TransactionCount!
+  user(data: UserSingleInput!): User!
+  userList: [User!]!
+}
+
+"""Account Entity"""
+type Transaction {
+  """Amount"""
+  amount: Float!
+  createdAt: DateTime!
+
+  """EUR/USD/YEN"""
+  currency: Currency
+
+  """Description"""
+  description: String
+
+  """Exchange rate"""
+  exchangeRate: Float!
+  id: ID!
+  receiver: User
+  sender: User
+  updatedAt: DateTime!
+}
+
+"""Account Entity"""
+type TransactionCount {
+  count: Int!
+  data: [Transaction!]!
+}
+
+input TransactionCreateInput {
+  amount: Float!
+  currency: Currency!
+
+  """Description"""
+  description: String
+  exchangeRate: Float!
+  receiverId: ID!
+}
+
+input TransactionWhere {
+  or: [TransactionWhereFields!]
+  receiver: UserWhereFields
+  sender: UserWhereFields
+}
+
+input TransactionWhereFields {
+  receiver: UserWhereFields
+  sender: UserWhereFields
 }
 
 """User Entity"""
@@ -96,4 +152,12 @@ type User {
   """Phone Number"""
   phone: String
   updatedAt: DateTime!
+}
+
+input UserSingleInput {
+  id: ID!
+}
+
+input UserWhereFields {
+  id: String
 }

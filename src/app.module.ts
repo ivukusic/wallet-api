@@ -9,6 +9,8 @@ import { GraphqlConfig } from './configs/config.interface';
 import { Account } from './modules/account/account.entity';
 import { AccountModule } from './modules/account/account.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { Transaction } from './modules/transaction/transaction.entity';
+import { TransactionModule } from './modules/transaction/transaction.module';
 import { User } from './modules/user/user.entity';
 import { UserModule } from './modules/user/user.module';
 
@@ -16,7 +18,7 @@ import { UserModule } from './modules/user/user.module';
   imports: [
     ConfigModule.forRoot({ isGlobal: true, load: [config] }),
     MikroOrmModule.forRoot({
-      entities: [Account, User],
+      entities: [Account, Transaction, User],
       dbName: process.env.POSTGRES_DB,
       type: 'postgresql',
       user: process.env.POSTGRES_USER,
@@ -47,9 +49,10 @@ import { UserModule } from './modules/user/user.module';
       },
       inject: [ConfigService],
     }),
-    AuthModule,
-    UserModule,
     AccountModule,
+    AuthModule,
+    TransactionModule,
+    UserModule,
   ],
   controllers: [],
   providers: [],

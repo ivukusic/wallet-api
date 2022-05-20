@@ -13,4 +13,9 @@ export class UserResolver {
   async user(@Args('data') data: UserSingleInput) {
     return this.userService.findOneById(data);
   }
+
+  @Query(() => [User])
+  async userList() {
+    return this.userService.userList();
+  }
 }

@@ -7,8 +7,8 @@ import { Account } from './account.entity';
 import { AccountCreateInput } from './input/accountCreate.input';
 
 const INITIAL_BALANCE = {
-  [CurrencyType.EUR]: 100,
-  [CurrencyType.USD]: 100,
+  [CurrencyType.EUR]: 1000,
+  [CurrencyType.USD]: 1000,
   [CurrencyType.YEN]: 100000,
 };
 
@@ -33,7 +33,7 @@ export class AccountService {
     try {
       const account = await this.em.create(Account, {
         ...data,
-        balance: INITIAL_BALANCE[currency] * 1000,
+        balance: INITIAL_BALANCE[currency],
         user: currentUser,
         default: !accounts?.length,
       });
