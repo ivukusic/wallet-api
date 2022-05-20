@@ -7,7 +7,6 @@ import { ForbiddenError } from 'apollo-server-express';
 import { SecurityConfig } from 'src/configs/config.interface';
 
 import { User } from '../user/user.entity';
-
 import { Auth } from './auth.model';
 import { JwtDto } from './dto/jwt.dto';
 import { AuthRefreshTokenInput } from './input/authRefreshToken.input';

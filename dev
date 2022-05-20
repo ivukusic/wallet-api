@@ -25,7 +25,7 @@ else
   echo "WARN: not able to configure nvm"
 fi
 
-NODE_VERSION="v$(cat .nvmrc)"
+NODE_VERSION="$(cat .nvmrc)"
 which node
 ACTIVE_VERSION=$(node --version)
 GLOBAL_NPM=$(which npm || echo "not found on PATH")

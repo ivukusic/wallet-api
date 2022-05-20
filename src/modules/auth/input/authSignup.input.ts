@@ -1,5 +1,6 @@
 import { InputType, Field } from '@nestjs/graphql';
 import { IsEmail } from 'class-validator';
+
 import { GenderType } from 'src/common/enums';
 
 @InputType()

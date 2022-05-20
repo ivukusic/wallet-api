@@ -1,11 +1,11 @@
 import { UseGuards, UsePipes } from '@nestjs/common';
 import { Resolver, Mutation, Args, Query } from '@nestjs/graphql';
-import { UserEntity } from 'src/common/decorators/current.decorator';
 
+import { UserEntity } from 'src/common/decorators/current.decorator';
 import { EmailTransformPipe } from 'src/common/pipes/email.pipe';
 import { GqlAuthGuard } from 'src/guards/gql-auth.guard';
-import { User } from '../user/user.entity';
 
+import { User } from '../user/user.entity';
 import { Auth } from './auth.model';
 import { AuthService } from './auth.service';
 import { AuthRefreshTokenInput } from './input/authRefreshToken.input';

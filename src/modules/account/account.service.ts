@@ -1,8 +1,9 @@
 import { EntityManager } from '@mikro-orm/core';
 import { Injectable } from '@nestjs/common';
-import { CurrencyType } from 'src/common/enums';
-import { User } from '../user/user.entity';
 
+import { CurrencyType } from 'src/common/enums';
+
+import { User } from '../user/user.entity';
 import { Account } from './account.entity';
 import { AccountCreateInput } from './input/accountCreate.input';
 

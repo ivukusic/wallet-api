@@ -8,15 +8,15 @@ import { v4 } from 'uuid';
 @Directive('@extends') // GraphQL
 @Directive('@key(fields: "id")') // GraphQL
 export abstract class BaseEntity {
-  @Field((_type) => ID, { nullable: false, defaultValue: null }) // GraphQL
+  @Field(() => ID, { nullable: false, defaultValue: null }) // GraphQL
   @PrimaryKey({ type: 'uuid', nullable: false }) // NestJs / MikroORM
   public id: string;
 
-  @Field((_type) => Date)
+  @Field(() => Date)
   @Property({ type: Date, nullable: false })
   public createdAt: Date = new Date();
 
-  @Field((_type) => Date)
+  @Field(() => Date)
   @Property({ onUpdate: () => new Date(), type: Date, nullable: false })
   public updatedAt: Date = new Date();
 

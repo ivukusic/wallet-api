@@ -18,7 +18,7 @@ import { User } from '../user/user.entity';
 @InputType({ isAbstract: true })
 export class Transaction extends BaseEntity {
   @Enum({ items: () => CurrencyType, nullable: false, type: Enum })
-  @Field((_type) => CurrencyType, {
+  @Field(() => CurrencyType, {
     description: 'EUR/USD/YEN',
     nullable: true,
   })
@@ -37,10 +37,10 @@ export class Transaction extends BaseEntity {
   description?: string;
 
   @ManyToOne({ entity: () => User, nullable: false })
-  @Field((_type) => User, { nullable: true })
+  @Field(() => User, { nullable: true })
   public sender: IdentifiedReference<User>;
 
   @ManyToOne({ entity: () => User, nullable: false })
-  @Field((_type) => User, { nullable: true })
+  @Field(() => User, { nullable: true })
   public receiver: IdentifiedReference<User>;
 }

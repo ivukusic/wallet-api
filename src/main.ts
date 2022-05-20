@@ -1,10 +1,10 @@
-import { NestFactory } from '@nestjs/core';
+import { MikroORM } from '@mikro-orm/core';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app.module';
 import { NestConfig } from './configs/config.interface';
-import { MikroORM } from '@mikro-orm/core';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

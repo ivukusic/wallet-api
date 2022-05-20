@@ -1,5 +1,6 @@
 import { EntityManager } from '@mikro-orm/postgresql';
 import { Injectable } from '@nestjs/common';
+
 import { UserSingleInput } from './input/userSingle.input';
 import { User } from './user.entity';
 

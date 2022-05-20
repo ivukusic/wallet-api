@@ -5,19 +5,16 @@ import { PaginationArgs } from 'src/common/pagination/pagination.args';
 
 import { Account } from '../account/account.entity';
 import { User } from '../user/user.entity';
-import { Transaction } from './transaction.entity';
 import { TransactionCreateInput } from './input/TransactionCreate.input';
-import { TransactionCount } from './transaction.interface';
 import { TransactionWhere } from './input/transactionWhere.input';
+import { Transaction } from './transaction.entity';
+import { TransactionCount } from './transaction.interface';
 
 @Injectable()
 export class TransactionService {
   constructor(private readonly em: EntityManager) {}
 
-  async transactionList(
-    whereArgs: TransactionWhere,
-    pagination: PaginationArgs,
-  ): Promise<TransactionCount> {
+  async transactionList(whereArgs: TransactionWhere, pagination: PaginationArgs): Promise<TransactionCount> {
     const where = {
       ...(whereArgs || {}),
     };
@@ -37,13 +34,7 @@ export class TransactionService {
   }
 
   async transactionCreate(
-    {
-      receiverId,
-      amount,
-      currency,
-      description,
-      exchangeRate,
-    }: TransactionCreateInput,
+    { receiverId, amount, currency, description, exchangeRate }: TransactionCreateInput,
     currentUser: User,
   ): Promise<Transaction> {
     const receiver = await this.em.findOne(User, { id: receiverId });
@@ -68,11 +59,6 @@ export class TransactionService {
       accountReceiver.balance = accountReceiver.balance + amount;
     }
 
-    console.log({
-      sender: accountSender.balance,
-      receiver: accountReceiver.balance,
-    });
-
     try {
       const transaction = await this.em.create(Transaction, {
         amount,
@@ -83,11 +69,7 @@ export class TransactionService {
         sender: currentUser,
       });
 
-      await this.em.persistAndFlush([
-        accountReceiver,
-        accountSender,
-        transaction,
-      ]);
+      await this.em.persistAndFlush([accountReceiver, accountSender, transaction]);
 
       return transaction;
     } catch (e) {
