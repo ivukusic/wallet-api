@@ -17,12 +17,9 @@ const INITIAL_BALANCE = {
 export class AccountService {
   constructor(private readonly em: EntityManager) {}
 
-  async accountCreate(
-    data: AccountCreateInput,
-    currentUser: User,
-  ): Promise<Account> {
+  async accountCreate(data: AccountCreateInput, currentUser: User): Promise<Account> {
     const { currency } = data;
-    const account = await this.em.findOne(Account, { currency });
+    const account = await this.em.findOne(Account, { currency, user: currentUser });
 
     if (account) {
       return account;

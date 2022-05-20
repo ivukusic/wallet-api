@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "d7051d41-a718-4588-993b-2f982adf85fd",
+		"name": "Wallet API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AuthSignup MUTATION",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation signup ($data: AuthSignupInput!) {\n  authSignup (data: $data) {\n    accessToken\n    refreshToken\n    user {\n      id\n      firstName\n      lastName\n      email\n    }\n  }\n}",
+						"variables": "{\n    \"data\": {\n        \"email\": \"ivanvukusic15@gmail.com\",\n        \"firstName\": \"Ivan\",\n        \"lastName\": \"Vukusic\"\n    }\n}"
+					},
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AccountCreate MUTATION",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjYTk5Yzg1YS1hMTBmLTQ5ZWUtODgyYS0zNTg1ZWFmYjQyMjciLCJpYXQiOjE2NTMwNjc3NDksImV4cCI6MTY4NDYwMzc0OX0.RvF3hChTTr_tvyRNAtcA7neOZ5UhtnYqisy3OZlN6_4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation accountCreate($data: AccountCreateInput!) {\n    accountCreate(data: $data) {\n        id\n        balance\n        currency\n        default\n    }\n}",
+						"variables": "{\n    \"data\": {\n        \"currency\": \"EUR\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TransactionCreate MUTATION",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjYTk5Yzg1YS1hMTBmLTQ5ZWUtODgyYS0zNTg1ZWFmYjQyMjciLCJpYXQiOjE2NTMwNjc3NDksImV4cCI6MTY4NDYwMzc0OX0.RvF3hChTTr_tvyRNAtcA7neOZ5UhtnYqisy3OZlN6_4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation transactionCreate($data: TransactionCreateInput!) {\n    transactionCreate(data: $data) {\n        id\n        amount\n        currency\n        description\n        exchangeRate\n        createdAt\n    }\n  }",
+						"variables": "{\n    \"data\": {\n        \"amount\": 100,\n        \"currency\": \"USD\",\n        \"exchangeRate\": 1.434,\n        \"receiverId\": \"39b92d58-70a1-4165-8ace-520db660980a\",\n        \"description\": \"Transaction description\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Me QUERY",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjYTk5Yzg1YS1hMTBmLTQ5ZWUtODgyYS0zNTg1ZWFmYjQyMjciLCJpYXQiOjE2NTMwNjc3NDksImV4cCI6MTY4NDYwMzc0OX0.RvF3hChTTr_tvyRNAtcA7neOZ5UhtnYqisy3OZlN6_4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query me {\n    me {\n        id\n        firstName\n        lastName\n        email\n        phone\n        gender\n        accounts {\n            id\n            balance\n            currency\n            default\n        }\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UserList QUERY",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjYTk5Yzg1YS1hMTBmLTQ5ZWUtODgyYS0zNTg1ZWFmYjQyMjciLCJpYXQiOjE2NTMwNjc3NDksImV4cCI6MTY4NDYwMzc0OX0.RvF3hChTTr_tvyRNAtcA7neOZ5UhtnYqisy3OZlN6_4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query userList {\n    userList {\n        id\n        firstName\n        lastName\n        email\n        phone\n        gender\n        accounts {\n            id\n            balance\n            currency\n            default\n        }\n    }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TransationList QUERY",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjYTk5Yzg1YS1hMTBmLTQ5ZWUtODgyYS0zNTg1ZWFmYjQyMjciLCJpYXQiOjE2NTMwNjc3NDksImV4cCI6MTY4NDYwMzc0OX0.RvF3hChTTr_tvyRNAtcA7neOZ5UhtnYqisy3OZlN6_4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query transactionList($where: TransactionWhere, $pagination: PaginationArgs) {\n    transactionList(where: $where, pagination: $pagination) {\n        data {\n            id\n            amount\n            currency\n            description\n            exchangeRate\n            createdAt\n            sender {\n                id\n                firstName\n                lastName\n                accounts {\n                    id\n                    currency\n                }\n            }\n            receiver {\n                id\n                firstName\n                lastName\n                accounts {\n                    id\n                    currency\n                }\n            }\n        }\n        count\n    }\n}",
+						"variables": "{\n    \"where\": {\n        \"or\": [\n            { \"receiver\": { \"id\": \"ca99c85a-a10f-49ee-882a-3585eafb4227\" } },\n            { \"sender\": { \"id\": \"ca99c85a-a10f-49ee-882a-3585eafb4227\" } }\n        ]\n    },\n    \"pagination\": {\n        \"limit\": 2,\n        \"offset\": 0\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

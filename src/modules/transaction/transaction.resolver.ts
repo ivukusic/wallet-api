@@ -6,7 +6,7 @@ import { PaginationArgs } from 'src/common/pagination/pagination.args';
 import { GqlAuthGuard } from 'src/guards/gql-auth.guard';
 
 import { User } from '../user/user.entity';
-import { TransactionCreateInput } from './input/TransactionCreate.input';
+import { TransactionCreateInput } from './input/transactionCreate.input';
 import { TransactionWhere } from './input/transactionWhere.input';
 import { Transaction } from './transaction.entity';
 import { TransactionCount } from './transaction.interface';

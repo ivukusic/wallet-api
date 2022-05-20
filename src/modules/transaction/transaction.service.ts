@@ -5,7 +5,7 @@ import { PaginationArgs } from 'src/common/pagination/pagination.args';
 
 import { Account } from '../account/account.entity';
 import { User } from '../user/user.entity';
-import { TransactionCreateInput } from './input/TransactionCreate.input';
+import { TransactionCreateInput } from './input/transactionCreate.input';
 import { TransactionWhere } from './input/transactionWhere.input';
 import { Transaction } from './transaction.entity';
 import { TransactionCount } from './transaction.interface';
@@ -42,6 +42,7 @@ export class TransactionService {
       user: currentUser,
       default: true,
     });
+
     const accountReceiver = await this.em.findOne(Account, {
       user: receiver,
       default: true,
