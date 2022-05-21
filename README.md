@@ -10,7 +10,9 @@
     - [Install prerequisites](#install-prerequisites)
     - [Setup your .env file](#setup-your-env-file)
     - [Deploy a local database](#deploy-a-local-database)
-    - [Install dependencies and run the server](#install-dependencies-and-run-the-server)
+    - [Install dependenciesr](#install-dependencies)
+    - [Populate seed](#populate-seeds)
+    - [Run the server](#run-the-server)
   - [Build and deploy](#build-and-deploy)
     - [Build and deploy the container](#build-and-deploy-the-container)
 
@@ -44,12 +46,23 @@ This has been simplified to a single line for easy starting with development, bu
 yarn docker_db
 ```
 
-#### Install dependencies and run the server
-
-Last steps! Just have to install the depenencies and start the server.
+#### Install dependencies
 
 ```sh
 yarn install
+```
+
+#### Populate seeds
+
+```sh
+yarn install
+```
+
+#### Run the server
+
+Last steps! Just have to start the server.
+
+```sh
 yarn start_dev
 ```
 
